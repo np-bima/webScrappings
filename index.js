@@ -6,6 +6,8 @@ const scrapeBCName = require('./bc-name');
 
 const cont = fs.readFileSync('./district-map');
 const j = JSON.parse(cont.toString());
+fs.mkdirSync('./csvs');
+
 let time = 1000;
 const r = Object.keys(states).map(async (state) => {
     const districtKeys = j[state];
