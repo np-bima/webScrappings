@@ -11,3 +11,4 @@ dump/
 pdfs/
 package-lock.json
 .idea
+*.csv

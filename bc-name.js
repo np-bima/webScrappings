@@ -39,7 +39,7 @@ async function scrapeBCName(bcId) {
     for (let i = 0; i < tableData.length; i++) {
         res += `${tableData[i].trim()},`;
     }
-    console.log(res);
+    return res;
 }
 
 module.exports = scrapeBCName;
