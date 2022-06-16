@@ -1,0 +1,30 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scrapping.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "nodemon dist-scrape.js",
+    "urun": "nodemon index.js",
+    "nrun": "nodemon scrapping.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.11",
+    "eslint": "^8.17.0",
+    "nodemon": "^2.0.16",
+    "qs": "^6.10.5"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-chai-friendly": "^0.4.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-mocha": "^5.2.0",
+    "factory-girl": "^4.2.1",
+    "babel-eslint": "^9.0.0"
+  }
+}
