@@ -11,26 +11,27 @@ if (!fs.existsSync('./csvs')) {
     fs.mkdirSync('./csvs');
 }
 
-let time = 1000;
+let time = 0;
 const r = Object.keys(states).map(async (state) => {
     const districtKeys = j[state];
     const stateName = states[state];
-    const result = districtKeys.map((dis) => {
+    const result = districtKeys.map(async (dis) => {
         console.log('calling for ', stateName);
-        setTimeout(async () => {
-            const distName = districts[dis];
-            const result = await scrapeBCIds(state, dis);
-            const resultDistBcs = result.bcIdArr;
-            // Promise.all(resultDistBcs).then(async (res) => {
-            //     const r = res[0];
-            const bcDataPromise = resultDistBcs.map(r => new Promise((res, rej) => {
-                time += 200;
-                setTimeout(() => res(scrapeBCName(r)), time);
-            }));
-            const bcData = await Promise.all(bcDataPromise);
-            const resultStr = bcData.join('\n');
-            fs.appendFileSync(`./csvs/${stateName}-${distName}.csv`, resultStr);
-            // });
-        });
+        const distName = districts[dis];
+        const result = await scrapeBCIds(state, dis);
+        const resultDistBcs = result.bcIdArr;
+        // Promise.all(resultDistBcs).then(async (res) => {
+        //     const r = res[0];
+        const bcDataPromise = resultDistBcs.map(r => new Promise((res, rej) => {
+            time += 400;
+            setTimeout(() => res(scrapeBCName(r)), time);
+        }));
+        const bcData = await Promise.all(bcDataPromise);
+        const resultStr = bcData.join('\n');
+        fs.appendFileSync(`./csvs/${stateName}-${distName}.csv`, resultStr);
+        return true;
+        // });
     });
+    await Promise.allSettled(result);
+    console.log(`----------------------------${stateName}----------------------------`);
 });
